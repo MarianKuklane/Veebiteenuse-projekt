@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="77577683-639d-4dad-916b-3d03b35b38b8" activeEnvironment="Default" name="ConcertService" resourceRoot="" soapui-version="5.4.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="a3237c2b-8e63-41f1-b7a1-971285bfde0c" wsaVersion="NONE" name="ConcertBinding" type="wsdl" bindingName="{http://www.ttu.ee/idu0075/2015/ws/concert}ConcertBinding" soapVersion="1_1" anonymous="optional" definition="http://msi:8080/ConsertWebApplicationViimane/ConcertService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://msi:8080/ConsertWebApplicationViimane/ConcertService?wsdl"><con:part><con:url>http://msi:8080/ConsertWebApplicationViimane/ConcertService?wsdl</con:url><con:content><![CDATA[<!--Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.2-b608 (trunk-7979; 2015-01-21T12:50:19+0000) JAXWS-RI/2.2.11-b150120.1832 JAXWS-API/2.2.12 JAXB-RI/2.2.12-b141219.1637 JAXB-API/2.2.13-b141020.1521 svn-revision#unknown.-->
+<wsdl:definitions targetNamespace="http://www.ttu.ee/idu0075/2015/ws/concert" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.ttu.ee/idu0075/2015/ws/concert">
+  <wsdl:types>
+    <xs:schema targetNamespace="http://www.ttu.ee/idu0075/2015/ws/concert" elementFormDefault="qualified">
+      <xs:element name="getConcertRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="token" type="xs:string"/>
+            <xs:element name="concertId" type="xs:integer"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getConcertResponse" type="tns:concertType"/>
+      <xs:complexType name="concertType">
+        <xs:sequence>
+          <xs:element name="concertId" type="xs:integer"/>
+          <xs:element name="concertName" type="xs:string"/>
+          <xs:element name="concertDate" type="xs:date"/>
+          <xs:element name="price" type="xs:double"/>
+          <xs:element name="place" type="xs:string"/>
+          <xs:element name="concertDuration" type="xs:double"/>
+          <xs:element name="category" minOccurs="1">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:pattern value="Rock|Pop|Trance|Classic"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element name="concertPerformerList" type="tns:concertPerformerListType"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="addConcertRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="token" type="xs:string"/>
+            <xs:element name="concertName" type="xs:string"/>
+            <xs:element name="concertDate" type="xs:date"/>
+            <xs:element name="concertDuration" type="xs:double"/>
+            <xs:element name="concertId" type="xs:integer"/>
+            <xs:element name="price" type="xs:double"/>
+            <xs:element name="place" type="xs:string"/>
+            <xs:element name="catecory" minOccurs="1">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="Rock|Pop|Trance|Classic"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="addConcertResponse" type="tns:concertType"/>
+      <xs:element name="getConcertListRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="token" type="xs:string"/>
+            <xs:element name="place" type="xs:string"/>
+            <xs:element name="price" type="xs:double"/>
+            <xs:element name="catecory" minOccurs="1">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="Rock|Pop|Trance|Classic"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getConcertListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="concert" type="tns:concertType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPerformerRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="token" type="xs:string"/>
+            <xs:element name="Id" type="xs:integer"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPerformerResponse" type="tns:performerType"/>
+      <xs:complexType name="performerType">
+        <xs:sequence>
+          <xs:element name="performerId" type="xs:integer"/>
+          <xs:element name="name" type="xs:string"/>
+          <xs:element name="phone" type="xs:integer"/>
+          <xs:element name="email" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="addPerformerRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="token" type="xs:string"/>
+            <xs:element name="requestCode" type="xs:integer"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="email" type="xs:string"/>
+            <xs:element name="phone" type="xs:integer"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="addPerformerResponse" type="tns:performerType"/>
+      <xs:element name="getPerformerListRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="token" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPerformerListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="performer" type="tns:performerType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getConcertPerformerListRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="token" type="xs:string"/>
+            <xs:element name="concertId" type="xs:integer"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getConcertPerformerListResponse" type="tns:concertPerformerListType"/>
+      <xs:complexType name="concertPerformerListType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="concertPerformer" type="tns:concertPerformerType"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="concertPerformerType">
+        <xs:sequence>
+          <xs:element name="performer" type="tns:performerType"/>
+          <xs:element name="performerHourPrice" type="xs:double"/>
+          <xs:element name="concertDuration" type="xs:double"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="addConcertPerformerRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="requestCode" type="xs:integer"/>
+            <xs:element name="token" type="xs:string"/>
+            <xs:element name="concertId" type="xs:integer"/>
+            <xs:element name="performerId" type="xs:integer"/>
+            <xs:element name="performerHourPrice" type="xs:double"/>
+            <xs:element name="concertDuration" type="xs:double"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="addConcertPerformerResponse" type="tns:concertPerformerType"/>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getConcertMessageRequest">
+    <wsdl:part name="parameter" element="tns:getConcertRequest"/>
+  </wsdl:message>
+  <wsdl:message name="getConcertMessageResponse">
+    <wsdl:part name="parameter" element="tns:getConcertResponse"/>
+  </wsdl:message>
+  <wsdl:message name="addConcertMessageRequest">
+    <wsdl:part name="parameter" element="tns:addConcertRequest"/>
+  </wsdl:message>
+  <wsdl:message name="addConcertMessageResponse">
+    <wsdl:part name="parameter" element="tns:addConcertResponse"/>
+  </wsdl:message>
+  <wsdl:message name="getConcertListMessageRequest">
+    <wsdl:part name="parameter" element="tns:getConcertListRequest"/>
+  </wsdl:message>
+  <wsdl:message name="getConcertListMessageResponse">
+    <wsdl:part name="parameter" element="tns:getConcertListResponse"/>
+  </wsdl:message>
+  <wsdl:message name="getPerformerMessageRequest">
+    <wsdl:part name="parameter" element="tns:getPerformerRequest"/>
+  </wsdl:message>
+  <wsdl:message name="getPerformerMessageResponse">
+    <wsdl:part name="parameter" element="tns:getPerformerResponse"/>
+  </wsdl:message>
+  <wsdl:message name="addPerformerMessageRequest">
+    <wsdl:part name="parameter" element="tns:addPerformerRequest"/>
+  </wsdl:message>
+  <wsdl:message name="addPerformerMessageResponse">
+    <wsdl:part name="parameter" element="tns:addPerformerResponse"/>
+  </wsdl:message>
+  <wsdl:message name="getPerformerListMessageRequest">
+    <wsdl:part name="parameter" element="tns:getPerformerListRequest"/>
+  </wsdl:message>
+  <wsdl:message name="getPerformerListMessageResponse">
+    <wsdl:part name="parameter" element="tns:getPerformerListResponse"/>
+  </wsdl:message>
+  <wsdl:message name="getConcertPerformerListMessageRequest">
+    <wsdl:part name="parameter" element="tns:getConcertPerformerListRequest"/>
+  </wsdl:message>
+  <wsdl:message name="getConcertPerformerListMessageResponse">
+    <wsdl:part name="parameter" element="tns:getConcertPerformerListResponse"/>
+  </wsdl:message>
+  <wsdl:message name="addConcertPerformerMessageRequest">
+    <wsdl:part name="parameter" element="tns:addConcertPerformerRequest"/>
+  </wsdl:message>
+  <wsdl:message name="addConcertPerformerMessageResponse">
+    <wsdl:part name="parameter" element="tns:addConcertPerformerResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="ConcertPortType">
+    <wsdl:operation name="getConcert">
+      <wsdl:input message="tns:getConcertMessageRequest"/>
+      <wsdl:output message="tns:getConcertMessageResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="addConcert">
+      <wsdl:input message="tns:addConcertMessageRequest"/>
+      <wsdl:output message="tns:addConcertMessageResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getConcertList">
+      <wsdl:input message="tns:getConcertListMessageRequest"/>
+      <wsdl:output message="tns:getConcertListMessageResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getPerformer">
+      <wsdl:input message="tns:getPerformerMessageRequest"/>
+      <wsdl:output message="tns:getPerformerMessageResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="addPerformer">
+      <wsdl:input message="tns:addPerformerMessageRequest"/>
+      <wsdl:output message="tns:addPerformerMessageResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getPerformerList">
+      <wsdl:input message="tns:getPerformerListMessageRequest"/>
+      <wsdl:output message="tns:getPerformerListMessageResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getConcertPerformerList">
+      <wsdl:input message="tns:getConcertPerformerListMessageRequest"/>
+      <wsdl:output message="tns:getConcertPerformerListMessageResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="addConcertPerformer">
+      <wsdl:input message="tns:addConcertPerformerMessageRequest"/>
+      <wsdl:output message="tns:addConcertPerformerMessageResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ConcertBinding" type="tns:ConcertPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getConcert">
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addConcert">
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getConcertList">
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPerformer">
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addPerformer">
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPerformerList">
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getConcertPerformerList">
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addConcertPerformer">
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ConcertService">
+    <wsdl:port name="ConcertPort" binding="tns:ConcertBinding">
+      <soap:address location="http://msi:8080/ConsertWebApplicationViimane/ConcertService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://msi:8080/ConsertWebApplicationViimane/ConcertService</con:endpoint></con:endpoints><con:operation id="8b51850b-291b-4db7-8a3d-2db6dfd38593" isOneWay="false" action="" name="addConcert" bindingOperationName="addConcert" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="448ad603-8fd7-4aa8-ab1f-480e21bb4327" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://msi:8080/ConsertWebApplicationViimane/ConcertService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://www.ttu.ee/idu0075/2015/ws/concert">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <con:addConcertRequest>\r
+         <con:token>salajane</con:token>\r
+         <con:concertName>ACDC </con:concertName>\r
+         <con:concertDate>2018-04-08</con:concertDate>\r
+         <con:concertDuration>2.30</con:concertDuration>\r
+         <con:concertId>2</con:concertId>\r
+         <con:price>30</con:price>\r
+         <con:place>Tallinn</con:place>\r
+         <con:catecory>Rock</con:catecory>\r
+      </con:addConcertRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/2015/ws/concert/ConcertPortType/addConcertRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="f7b173c2-fc54-4c6e-a060-82c6bd364504" isOneWay="false" action="" name="addConcertPerformer" bindingOperationName="addConcertPerformer" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="bce9fc88-b8cf-4785-9efe-2bf916528a5b" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://msi:8080/ConsertWebApplicationViimane/ConcertService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://www.ttu.ee/idu0075/2015/ws/concert">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <con:addConcertPerformerRequest>\r
+         <con:requestCode>123</con:requestCode>\r
+         <con:token>salajane</con:token>\r
+         <con:concertId>1</con:concertId>\r
+         <con:performerId>1</con:performerId>\r
+         <con:performerHourPrice>20</con:performerHourPrice>\r
+         <con:concertDuration>1.30</con:concertDuration>\r
+      </con:addConcertPerformerRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/2015/ws/concert/ConcertPortType/addConcertPerformerRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="2589340c-6148-4af2-a9ae-4604f168a766" isOneWay="false" action="" name="addPerformer" bindingOperationName="addPerformer" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="c9b61065-62c2-4240-8a9e-da70dee726e2" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://msi:8080/ConsertWebApplicationViimane/ConcertService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://www.ttu.ee/idu0075/2015/ws/concert">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <con:addPerformerRequest>\r
+         <con:token>salajane</con:token>\r
+         <con:requestCode>122</con:requestCode>\r
+         <con:name>Tupac Zhakur</con:name>\r
+         <!--Optional:-->\r
+         <con:email>tupac@gmail.com</con:email>\r
+         <con:phone>54433111</con:phone>\r
+      </con:addPerformerRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/2015/ws/concert/ConcertPortType/addPerformerRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="f2fee1a1-8033-46bb-95f4-20149c447cc1" isOneWay="false" action="" name="getConcert" bindingOperationName="getConcert" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="153fc46d-d0bf-41fd-94f2-b39264392216" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://msi:8080/ConsertWebApplicationViimane/ConcertService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://www.ttu.ee/idu0075/2015/ws/concert">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <con:getConcertRequest>\r
+         <con:token>salajane</con:token>\r
+         <con:concertId>1</con:concertId>\r
+      </con:getConcertRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/2015/ws/concert/ConcertPortType/getConcertRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="af6b7bd1-7e08-4954-a047-fa1e8ed795cc" isOneWay="false" action="" name="getConcertList" bindingOperationName="getConcertList" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="0aa85ff9-fb13-4fcb-a2a6-55e505457b0f" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://msi:8080/ConsertWebApplicationViimane/ConcertService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://www.ttu.ee/idu0075/2015/ws/concert">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <con:getConcertListRequest>\r
+         <con:token>salajane</con:token>\r
+         <con:place>Tallinn</con:place>\r
+         <con:price>30</con:price>\r
+         <con:catecory>Rock</con:catecory>\r
+      </con:getConcertListRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/2015/ws/concert/ConcertPortType/getConcertListRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="a0c04de1-ffcb-476e-9741-26a48b5d6d4a" isOneWay="false" action="" name="getConcertPerformerList" bindingOperationName="getConcertPerformerList" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="93ccd370-e2c9-41af-80d2-aa6caa62d5fc" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://msi:8080/ConsertWebApplicationViimane/ConcertService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://www.ttu.ee/idu0075/2015/ws/concert">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <con:getConcertPerformerListRequest>\r
+         <con:token>salajane</con:token>\r
+         <con:concertId>1</con:concertId>\r
+      </con:getConcertPerformerListRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/2015/ws/concert/ConcertPortType/getConcertPerformerListRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="197c538b-ed5e-4b23-8c5f-cf010a654996" isOneWay="false" action="" name="getPerformer" bindingOperationName="getPerformer" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="517afe36-cd5c-4271-8dba-83db08520268" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://msi:8080/ConsertWebApplicationViimane/ConcertService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://www.ttu.ee/idu0075/2015/ws/concert">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <con:getPerformerRequest>\r
+         <con:token>salajane</con:token>\r
+         <con:Id>1</con:Id>\r
+      </con:getPerformerRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/2015/ws/concert/ConcertPortType/getPerformerRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="d6a006fa-e552-4ce0-89cf-37e717431ccc" isOneWay="false" action="" name="getPerformerList" bindingOperationName="getPerformerList" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="0075d1ac-0c51-4c04-b28e-95b34703b852" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://msi:8080/ConsertWebApplicationViimane/ConcertService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://www.ttu.ee/idu0075/2015/ws/concert">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <con:getPerformerListRequest>\r
+         <con:token>salajane</con:token>\r
+      </con:getPerformerListRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/2015/ws/concert/ConcertPortType/getPerformerListRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="e3886ae3-5529-40f9-90aa-675c8dfffd16" name="ConcertBinding TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="75b39fb9-28f3-4c42-ba12-adf17f8ab9f0" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="addConcert TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="7cb7a0d3-49a1-4286-9c00-9963f9ceca9a" name="addConcert"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ConcertBinding</con:interface><con:operation>addConcert</con:operation><con:request name="addConcert" id="eec62c6a-6e9c-4e74-8b03-e7eb41a84d26"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://msi:8080/ConsertWebApplicationViimane/ConcertService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://www.ttu.ee/idu0075/2015/ws/concert">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <con:addConcertRequest>\r
+         <con:token>salajane</con:token>\r
+         <con:concertName>Tupac</con:concertName>\r
+         <con:concertDate>2018-06-07</con:concertDate>\r
+         <con:concertDuration>2</con:concertDuration>\r
+         <con:concertId>2</con:concertId>\r
+         <con:price>30</con:price>\r
+         <con:place>Tartu</con:place>\r
+         <con:catecory>Pop</con:catecory>\r
+      </con:addConcertRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Schema Compliance" id="1555d360-abaf-47dc-984a-1dba9d94cf59" name="Schema Compliance"><con:configuration><definition/></con:configuration></con:assertion><con:assertion type="XPath Match" id="d40f9a11-d3d5-40e9-8dac-a6ac58af117d" name="XPath Match"><con:configuration><path>declare namespace S='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace M='http://www.ttu.ee/idu0075/2015/ws/concert';
+//M:addConcertResponse/M:category</path><content>Pop</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://www.ttu.ee/idu0075/2015/ws/concert/ConcertPortType/addConcertRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="709877ff-92ec-47c4-af47-9edfa8e5abce" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="addConcertPerformer TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="1beb48a5-3396-4274-b3a0-19f2b82d41dc" name="addConcertPerformer"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ConcertBinding</con:interface><con:operation>addConcertPerformer</con:operation><con:request name="addConcertPerformer" id="aadf88c9-e73e-4457-aec6-cad0b285efad"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://msi:8080/ConsertWebApplicationViimane/ConcertService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://www.ttu.ee/idu0075/2015/ws/concert">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <con:addConcertPerformerRequest>\r
+         <con:requestCode>123</con:requestCode>\r
+         <con:token>salajane</con:token>\r
+         <con:concertId>1</con:concertId>\r
+         <con:performerId>2</con:performerId>\r
+         <con:performerHourPrice>20</con:performerHourPrice>\r
+         <con:concertDuration>3</con:concertDuration>\r
+      </con:addConcertPerformerRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Schema Compliance" id="22a4b9b9-fe8b-4d32-b36b-eb1675c6c7e6" name="Schema Compliance"><con:configuration><definition/></con:configuration></con:assertion><con:assertion type="XPath Match" id="3cf050df-7293-4a5a-b5b3-e4abad83c824" name="XPath Match"><con:configuration><path>declare namespace S='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns1='http://www.ttu.ee/idu0075/2015/ws/concert';
+exists(//ns1:name)</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://www.ttu.ee/idu0075/2015/ws/concert/ConcertPortType/addConcertPerformerRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="a6fd74c4-f180-4178-af72-93ac72e40d50" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="addPerformer TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="33c55cad-dba2-49ad-9233-6ccf805c41d1" name="addPerformer"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ConcertBinding</con:interface><con:operation>addPerformer</con:operation><con:request name="addPerformer" id="78e14eae-169c-4dba-a3cb-854352d90aeb"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://msi:8080/ConsertWebApplicationViimane/ConcertService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://www.ttu.ee/idu0075/2015/ws/concert">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <con:addPerformerRequest>\r
+         <con:token>salajane</con:token>\r
+         <con:requestCode>133</con:requestCode>\r
+         <con:name>U2</con:name>\r
+         <!--Optional:-->\r
+         <con:email>u2@mail.ee</con:email>\r
+         <con:phone>54763122</con:phone>\r
+      </con:addPerformerRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Schema Compliance" id="99af8359-09b9-429e-b582-22427273ea6e" name="Schema Compliance"><con:configuration><definition/></con:configuration></con:assertion><con:assertion type="XPath Match" id="98487938-390c-487f-9701-cb87b6f9e265" name="XPath Match"><con:configuration><path>declare namespace S='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace M1='http://www.ttu.ee/idu0075/2015/ws/concert';
+//M1:addPerformerResponse/M1:name</path><content>U2</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://www.ttu.ee/idu0075/2015/ws/concert/ConcertPortType/addPerformerRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="91a161da-111d-45e7-b545-f427f0e69800" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getConcert TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="c7cb2405-0dd7-4579-8d07-55813e8165fb" name="getConcert"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ConcertBinding</con:interface><con:operation>getConcert</con:operation><con:request name="getConcert" id="655b2e1c-d311-4256-99f1-a710f40d7ebc"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://msi:8080/ConsertWebApplicationViimane/ConcertService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://www.ttu.ee/idu0075/2015/ws/concert">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <con:getConcertRequest>\r
+         <con:token>salajane</con:token>\r
+         <con:concertId>1</con:concertId>\r
+      </con:getConcertRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Schema Compliance" id="d1798d8c-5782-4346-b6ac-edcb5cbfdeac" name="Schema Compliance"><con:configuration><definition/></con:configuration></con:assertion><con:assertion type="XPath Match" id="9ce223a9-19e2-4947-af10-f95582f37684" name="XPath Match"><con:configuration><path>declare namespace S='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace M='http://www.ttu.ee/idu0075/2015/ws/concert';
+//M:getConcertResponse/M:place</path><content>Tartu</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://www.ttu.ee/idu0075/2015/ws/concert/ConcertPortType/getConcertRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="93f4771c-a566-4381-9a5c-5c592dcfe5ff" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getConcertList TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="71099ce7-064b-4a20-853e-da391598a6af" name="getConcertList"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ConcertBinding</con:interface><con:operation>getConcertList</con:operation><con:request name="getConcertList" id="d86b7710-4594-4f51-9455-3f94e1510731"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://msi:8080/ConsertWebApplicationViimane/ConcertService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://www.ttu.ee/idu0075/2015/ws/concert">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <con:getConcertListRequest>\r
+         <con:token>salajane</con:token>\r
+         <con:place>Tartu</con:place>\r
+         <con:price>30</con:price>\r
+         <con:catecory>Pop</con:catecory>\r
+      </con:getConcertListRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Schema Compliance" id="f273b852-e58a-482d-b66d-bd1bb09f7f32" name="Schema Compliance"><con:configuration><definition/></con:configuration></con:assertion><con:assertion type="XPath Match" id="b1f626f2-77ae-4f0f-aad4-2002f370319a" name="XPath Match"><con:configuration><path>declare namespace S='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace M='http://www.ttu.ee/idu0075/2015/ws/concert';
+exists(//M:concert)</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://www.ttu.ee/idu0075/2015/ws/concert/ConcertPortType/getConcertListRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="e9e5d50d-d9f7-4d9c-b3ce-b46251882522" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getConcertPerformerList TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="e8693254-5466-4d62-b33a-302c2b82b15d" name="getConcertPerformerList"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ConcertBinding</con:interface><con:operation>getConcertPerformerList</con:operation><con:request name="getConcertPerformerList" id="610d818e-068d-471f-8204-c5ce5fa30ec5"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://msi:8080/ConsertWebApplicationViimane/ConcertService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://www.ttu.ee/idu0075/2015/ws/concert">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <con:getConcertPerformerListRequest>\r
+         <con:token>salajane</con:token>\r
+         <con:concertId>1</con:concertId>\r
+      </con:getConcertPerformerListRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Schema Compliance" id="43199ab2-42bb-4ed1-8ad2-a1da8a085382" name="Schema Compliance"><con:configuration><definition/></con:configuration></con:assertion><con:assertion type="XPath Match" id="6f348c5c-4cd8-4585-83ee-deb1ccc79cb6" name="XPath Match"><con:configuration><path>declare namespace S='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace M='http://www.ttu.ee/idu0075/2015/ws/concert';
+exists(//M:name)</path><content>true</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://www.ttu.ee/idu0075/2015/ws/concert/ConcertPortType/getConcertPerformerListRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="949268a6-731e-41bd-b0a2-bc8b73965df5" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getPerformer TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="d152b2b9-8f59-41e8-8f57-36a36a09e9a4" name="getPerformer"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ConcertBinding</con:interface><con:operation>getPerformer</con:operation><con:request name="getPerformer" id="3de61754-73d8-4b4b-8960-44e4a2fda431"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://msi:8080/ConsertWebApplicationViimane/ConcertService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://www.ttu.ee/idu0075/2015/ws/concert">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <con:getPerformerRequest>\r
+         <con:token>salajane</con:token>\r
+         <con:Id>1</con:Id>\r
+      </con:getPerformerRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Schema Compliance" id="a4dff3b4-5759-41e9-b4dc-6d0e163bb2a0" name="Schema Compliance"><con:configuration><definition/></con:configuration></con:assertion><con:assertion type="XPath Match" id="ebd485ec-149c-48a9-8410-9b3fd18bbc43" name="XPath Match"><con:configuration><path>declare namespace S='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace M='http://www.ttu.ee/idu0075/2015/ws/concert';
+//M:getPerformerResponse/M:name</path><content>Tupac Zhakur</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://www.ttu.ee/idu0075/2015/ws/concert/ConcertPortType/getPerformerRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="221154a7-e913-4a38-a73f-330b2a171da1" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getPerformerList TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="eef5477e-6e53-4b35-a192-8b7eaa994431" name="getPerformerList"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>ConcertBinding</con:interface><con:operation>getPerformerList</con:operation><con:request name="getPerformerList" id="5a5f5899-d648-415d-884e-722dbce98dfd"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://msi:8080/ConsertWebApplicationViimane/ConcertService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://www.ttu.ee/idu0075/2015/ws/concert">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <con:getPerformerListRequest>\r
+         <con:token>salajane</con:token>\r
+      </con:getPerformerListRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="Schema Compliance" id="447c7f12-fff1-4ac6-8b48-e57888efdeeb" name="Schema Compliance"><con:configuration><definition/></con:configuration></con:assertion><con:assertion type="XPath Match" id="96353204-45d2-4614-86fd-cb736aed2e2e" name="XPath Match"><con:configuration><path>declare namespace S='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace M='http://www.ttu.ee/idu0075/2015/ws/concert';
+exists(//M:name)</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://www.ttu.ee/idu0075/2015/ws/concert/ConcertPortType/getPerformerListRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
