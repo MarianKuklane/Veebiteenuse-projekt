@@ -1,0 +1,434 @@
+{
+	"info": {
+		"_postman_id": "ebbf8feb-031e-41d5-acea-80cdb83d001e",
+		"name": "Request",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "addPerformer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d92f6727-8b78-4c84-a3af-418fd2af81ba",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Response has correct phone\"] = responseBody.has(54433123);",
+							"",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"token\": \"salajane\",\n\t\"requestCode\": 123,\n\t\"name\" : \"Tupac Zhakur\",\n\t\"email\": \"pax@gmail.com\",\n\t\"phone\" : 54433123\n}"
+				},
+				"url": {
+					"raw": "http://msi:8080/ConsertWebApplicationViimane/webresources/performers/?token=salajane",
+					"protocol": "http",
+					"host": [
+						"msi"
+					],
+					"port": "8080",
+					"path": [
+						"ConsertWebApplicationViimane",
+						"webresources",
+						"performers",
+						""
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "salajane"
+						}
+					]
+				},
+				"description": "Esinejate lisamine"
+			},
+			"response": [
+				{
+					"id": "b1ae8f30-3c91-40ea-9927-4c3be27132c7",
+					"name": "addPerformer",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://msi:8080/ConsertWebApplicationViimane/webresources/performers/?token=salajane",
+							"protocol": "http",
+							"host": [
+								"msi"
+							],
+							"port": "8080",
+							"path": [
+								"ConsertWebApplicationViimane",
+								"webresources",
+								"performers",
+								""
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "salajane"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "98",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 05 May 2018 10:27:18 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Server",
+							"value": "GlassFish Server Open Source Edition  4.1.1 ",
+							"name": "Server",
+							"description": "A name for the server"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Servlet/3.1 JSP/2.3 (GlassFish Server Open Source Edition  4.1.1  Java/Oracle Corporation/1.8)",
+							"name": "X-Powered-By",
+							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+						}
+					],
+					"cookie": [],
+					"body": "{\"performer\":[{\"performerId\":1,\"name\":\"Tupac Zhakur\",\"phone\":54433111,\"email\":\"tupac@gmail.com\"}]}"
+				}
+			]
+		},
+		{
+			"name": "getPerformerList",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "145d02c6-db5b-4b5e-b846-25d87a4a9e5d",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Response has correct name\"] = responseBody.has(\"Tupac Zhakur\");",
+							"",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://msi:8080/ConsertWebApplicationViimane/webresources/performers/?token=salajane",
+					"protocol": "http",
+					"host": [
+						"msi"
+					],
+					"port": "8080",
+					"path": [
+						"ConsertWebApplicationViimane",
+						"webresources",
+						"performers",
+						""
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "salajane"
+						}
+					]
+				},
+				"description": "getPerformerList"
+			},
+			"response": []
+		},
+		{
+			"name": "addConcert",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e4069c93-7652-450d-b4f5-484568b87cdb",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Concert price match\"] = responseBody.has(50);",
+							"",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"concertName\": \"Tupac Live\",\n\"concertDate\" : \"2018-09-09\",\n\"concertDuration\": 2,\n\"concertId\": 7,\n\"price\" :50,\n\"place\": \"Tallinn\",\n\"category\": \"Pop\"\n}"
+				},
+				"url": {
+					"raw": "http://msi:8080/ConsertWebApplicationViimane/webresources/concerts/?token=salajane",
+					"protocol": "http",
+					"host": [
+						"msi"
+					],
+					"port": "8080",
+					"path": [
+						"ConsertWebApplicationViimane",
+						"webresources",
+						"concerts",
+						""
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "salajane"
+						}
+					]
+				},
+				"description": "addConcert"
+			},
+			"response": []
+		},
+		{
+			"name": "getPerformer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ea4316a4-aba8-4655-b232-fc58dbe82a1f",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"tests[\"Response has correct performerId\"] = responseBody.has(1);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://msi:8080/ConsertWebApplicationViimane/webresources/performers/?token=salajane",
+					"protocol": "http",
+					"host": [
+						"msi"
+					],
+					"port": "8080",
+					"path": [
+						"ConsertWebApplicationViimane",
+						"webresources",
+						"performers",
+						""
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "salajane"
+						}
+					]
+				},
+				"description": "getPerformer"
+			},
+			"response": []
+		},
+		{
+			"name": "getConcert",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "183b4f7c-6c87-4aa6-aa4e-a7a28d2c86f5",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function()",
+							"{",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"tests[\"Response has correct category\"] = responseBody.has(\"Pop\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://msi:8080/ConsertWebApplicationViimane/webresources/concerts/1/?token=salajane ",
+					"protocol": "http",
+					"host": [
+						"msi"
+					],
+					"port": "8080",
+					"path": [
+						"ConsertWebApplicationViimane",
+						"webresources",
+						"concerts",
+						"1",
+						""
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "salajane "
+						}
+					]
+				},
+				"description": "getConcert"
+			},
+			"response": []
+		},
+		{
+			"name": "getConcertList",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "429176bd-8aec-45f8-98e5-6253f24ed501",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://msi:8080/ConsertWebApplicationViimane/webresources/concerts/?token=salajane ",
+					"protocol": "http",
+					"host": [
+						"msi"
+					],
+					"port": "8080",
+					"path": [
+						"ConsertWebApplicationViimane",
+						"webresources",
+						"concerts",
+						""
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "salajane "
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getConcertPerformerList",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ea0f4d85-4586-41dc-976a-c6cafc5eadbc",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Has correct concert name\"] = responseBody.has(\"Hellad velled\");",
+							"",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://msi:8080/ConsertWebApplicationViimane/webresources/concerts/1/?token=salajane ",
+					"protocol": "http",
+					"host": [
+						"msi"
+					],
+					"port": "8080",
+					"path": [
+						"ConsertWebApplicationViimane",
+						"webresources",
+						"concerts",
+						"1",
+						""
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "salajane "
+						}
+					]
+				},
+				"description": "getConcertPerformerList"
+			},
+			"response": []
+		},
+		{
+			"name": "addConcertPerformer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://msi:8080/ConsertWebApplicationViimane/webresources/concerts/1/performers/?token=salajane ",
+					"protocol": "http",
+					"host": [
+						"msi"
+					],
+					"port": "8080",
+					"path": [
+						"ConsertWebApplicationViimane",
+						"webresources",
+						"concerts",
+						"1",
+						"performers",
+						""
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "salajane "
+						}
+					]
+				},
+				"description": "addConcertPerformer"
+			},
+			"response": []
+		}
+	]
+}
